@@ -4,12 +4,13 @@ import Login from "../pages/login/Login";
 import Default from "../pages/default/Default";
 import ValidityChecker from "./validityChecker";
 import privateRoutes from "./privateRoutes";
+import Header from "../parts/header/Header";
 
 const Routes = () => {
 
     return(
         <BrowserRouter>
-            {/*<Header />*/}
+            <Header />
             <>
                 <Switch>
                     <Route path={'/login'} exact component={Login}/>

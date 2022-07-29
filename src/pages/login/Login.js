@@ -3,7 +3,11 @@ import './login.scss';
 
 const Login = () => {
   return(
-      <div>login</div>
+      <form className="login waver">
+        <input type="text" placeholder="Username" />
+          <input type="password" placeholder="Password" />
+            <button>Login</button>
+      </form>
   )
 }
 

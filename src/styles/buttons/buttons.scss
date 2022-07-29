@@ -1,0 +1,27 @@
+@import "../variables/variables";
+button {
+  cursor: pointer !important;
+  color: #fff;
+  font-size: 16px !important;
+  text-transform: uppercase !important;
+  border: 0;
+  padding: 15px;
+  margin-top: 10px !important;
+  margin-left: -5px !important;
+  border-radius: 5px !important;
+  background-color: $primaryColor;
+  transition: (background-color 300ms);
+
+  &:hover {
+    background-color: darken($primaryColor, 5%);
+  }
+}
+
+a {
+  text-decoration: none !important;
+  color: $primaryColor !important;
+  transition: (background-color 300ms) !important;
+  &:hover {
+    text-decoration: underline !important;
+  }
+}
