@@ -4,13 +4,15 @@ import {useForm} from "react-hook-form";
 import {dateFormatter} from "../../helpers/dateFormatter";
 import {useDispatch, useSelector} from "react-redux";
 import {getAllMemberAction} from "../../store/actions/getAllMemberAction";
-import {useHistory, useLocation} from "react-router-dom";
+import {Link, useHistory, useLocation} from 'react-router-dom';
 import {updateTaskAction} from "../../store/actions/updateTaskAction";
 import {deleteTaskAction} from "../../store/actions/deleteTaskAction";
 
 const UpdateTask = () => {
     const [allMembers, setAllMembers] = useState([]);
     const [taskStatus, setTaskStatus] = useState(false);
+
+    // get All members
     useEffect(() => {
         dispatch(getAllMemberAction());
     }, [])
@@ -22,16 +24,21 @@ const UpdateTask = () => {
     }, [members]);
     const {register, formState: {errors}, handleSubmit} = useForm();
     const dispatch = useDispatch();
+    const location = useLocation();
+    const task = location.info.task;
+
+    // update task request
     const onSubmit = (data) => {
         data.created = dateFormatter();
         data.assigned_to = Number(data.assigned_to);
         const member = allMembers.find(member => member.id === data.assigned_to);
         data.assigned_name = member ? member.name : '';
+        data.id = task.id;
         dispatch(updateTaskAction(data))
         setTaskStatus(true);
     };
-    const location = useLocation();
-    const task = location.info.task;
+
+    // delete task request
     const deleteTask = () => {
         dispatch(deleteTaskAction(task));
         setTaskStatus(true);
@@ -40,6 +47,8 @@ const UpdateTask = () => {
     const {updated_task} = useSelector(state => state.updateTaskReducer);
     const {deleted_task} = useSelector(state => state.deleteTaskReducer);
     const history = useHistory();
+
+    // route change after task delete or update
     useEffect(() => {
         if(taskStatus) {
             if(updated_task || deleted_task) {
@@ -51,7 +60,8 @@ const UpdateTask = () => {
 
     return(
         <>
-            <form className="task-form waver" onSubmit={handleSubmit(onSubmit)}>
+            <form className="task-form-update waver" onSubmit={handleSubmit(onSubmit)}>
+                <Link to={'/tasks'} className={'btn-close float-end link-to-button'}> </Link>
                 <input type="text" {...register("title", {required: true})}
                        placeholder="Title" defaultValue={task.title}/>
                 {errors.title?.type === 'required' && <label className={'error'}>Title is required</label>}
@@ -61,7 +71,7 @@ const UpdateTask = () => {
                     <option selected disabled hidden>Choose one assignee</option>
                     {allMembers.length &&
                         allMembers.map(member => <option
-                            value={member.id} selected={member.id === task.id}>
+                            value={member.id} selected={member.id === task.assigned_to}>
                             {member.name}</option>)}
 
                 </select>

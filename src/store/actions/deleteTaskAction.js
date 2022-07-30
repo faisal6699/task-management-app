@@ -8,7 +8,7 @@ import {BASE_API_URL} from "../../helpers/urls";
 
 const deleteTaskAction = (data) => async (dispatch) => {
     dispatch({ type: DELETE_TASK_REQUEST, payload: { data } });
-    fetch(`${BASE_API_URL}/members/${data.id}`, {
+    fetch(`${BASE_API_URL}/tasks/${data.id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"

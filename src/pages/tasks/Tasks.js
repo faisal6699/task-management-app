@@ -1,12 +1,17 @@
 import React, {useEffect, useState} from "react";
 import './tasks.scss';
+
+// child cards
 import TaskCard from "../../components/taskCard/TaskCard";
 import TaskForm from "../../components/taskForm/TaskForm";
+
+// redux
 import {useDispatch, useSelector} from "react-redux";
 import {getAllTaskAction} from "../../store/actions/getAllTasksAction";
 
 const Tasks = () => {
     const [allTasks, setAllTasks] = useState([]);
+    // get all tasks
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAllTaskAction());
@@ -15,10 +20,11 @@ const Tasks = () => {
 
     useEffect(() => {
         if (tasks) {
-            console.log(tasks);
             setAllTasks(tasks.result)
         }
     }, [tasks])
+
+    // get new task after added
     const {new_task} = useSelector(state => state.addNewTaskReducer);
 
     useEffect(() => {

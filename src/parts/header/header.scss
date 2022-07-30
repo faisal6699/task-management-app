@@ -1,3 +1,8 @@
+@import "../../styles/variables/variables";
 .dropdown-menu{
   margin: 0 0 0 -85px !important;
+}
+
+.active {
+  color: $otherColor !important;
 }

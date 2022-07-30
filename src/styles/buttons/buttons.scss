@@ -21,7 +21,12 @@ a {
   text-decoration: none !important;
   color: $primaryColor !important;
   transition: (background-color 300ms) !important;
+  cursor: pointer;
   &:hover {
     text-decoration: underline !important;
   }
+}
+
+.link-to-button {
+  margin: 10px;
 }

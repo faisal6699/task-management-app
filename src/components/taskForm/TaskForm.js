@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import './taskForm.scss';
 import {useForm} from "react-hook-form";
+
+// redux
 import {useDispatch, useSelector} from "react-redux";
 import {getAllMemberAction} from "../../store/actions/getAllMemberAction";
 import {addNewTaskAction} from "../../store/actions/addNewTaskAction";
@@ -19,6 +21,8 @@ const TaskForm = () => {
             setAllMembers(members.result);
         }
     }, [members]);
+
+    // add new task request
     const onSubmit = (data) => {
         data.created = dateFormatter();
         data.assigned_to = Number(data.assigned_to);
@@ -39,7 +43,7 @@ const TaskForm = () => {
                         allMembers.map(member => <option value={member.id}>{member.name}</option>)}
 
                 </select>
-                <button>Update Task</button>
+                <button>Add Task</button>
             </form>
         </>
     )
