@@ -9,3 +9,7 @@ input, textarea, select {
   padding: 10px 10px !important;
   margin: 15px -10px !important;
 }
+
+.input:focus {
+  outline: none;
+}

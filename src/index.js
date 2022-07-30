@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {makeServer} from "./server";
 import './styles/main.scss';
 
 //redux import
@@ -10,6 +9,16 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
+import {loginReducer} from "./store/reducers/loginReducer";
+import {getAllUSerReducer} from "./store/reducers/getAllUserReducer";
+import {getAllMemberReducer} from "./store/reducers/getAllMemberReducer";
+import {getAllTaskReducer} from "./store/reducers/getAllTaskReducer";
+import {addNewTaskReducer} from "./store/reducers/addNewTaskReducer";
+import {addNewMemberReducer} from "./store/reducers/addNewMemberReducer";
+import {deleteTaskReducer} from "./store/reducers/deleteTaskReducer";
+import {deleteMemberReducer} from "./store/reducers/deleteMemberReducer";
+import {updateTaskReducer} from "./store/reducers/updateTaskReducer";
+import {updateMemberReducer} from "./store/reducers/updateMemberReducer";
 
 //bootstrap import
 import "bootstrap";
@@ -18,12 +27,21 @@ import "bootstrap/dist/js/bootstrap.js";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// initiate fake server;
-makeServer();
 
 //redux initiate
 const logger = createLogger();
-const reducerCombined = combineReducers({});
+const reducerCombined = combineReducers({
+    loginReducer,
+    getAllUSerReducer,
+    getAllMemberReducer,
+    getAllTaskReducer,
+    addNewTaskReducer,
+    addNewMemberReducer,
+    deleteTaskReducer,
+    deleteMemberReducer,
+    updateTaskReducer,
+    updateMemberReducer
+});
 const store = createStore(
     reducerCombined,
     applyMiddleware(thunkMiddleware, logger)
