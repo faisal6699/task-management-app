@@ -7,7 +7,6 @@ import privateRoutes from "./privateRoutes";
 import Header from "../parts/header/Header";
 
 const Routes = () => {
-
     return(
         <BrowserRouter>
             <Header />
