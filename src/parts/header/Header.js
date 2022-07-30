@@ -30,7 +30,7 @@ const Header = () => {
         <div className={location.pathname === '/login' ? 'd-none' : 'd-block'}>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
-                <Link to={'/'} className="navbar-brand" ref={addRef} onClick={() => changeActiveStatus('dashboard')}>Navbar</Link>
+                <Link to={'/'} className="navbar-brand" ref={addRef} onClick={() => changeActiveStatus('dashboard')}>Task management app</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
                         aria-label="Toggle navigation">
