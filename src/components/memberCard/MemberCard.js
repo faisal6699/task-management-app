@@ -4,6 +4,8 @@ import {Link} from "react-router-dom";
 
 const MemberCard = ({member, task}) => {
     const [counter, updateCounter] = useState(0);
+
+    // task counter
     useEffect(() => {
         if(task) {
             const count = task.filter(t => t.assigned_to === member.id);
@@ -11,9 +13,9 @@ const MemberCard = ({member, task}) => {
         }
     }, [])
     return(
-        <div className="card member-card mb-2">
+        <div className="card member-card m-2">
             <div className="card-body">
-                <Link to={{pathname: `/members/${member.name}`, info: {member}}} className="card-title">{member.name}</Link>
+                <Link to={{pathname: `/members/${member.name}`, info: {member, task}}} className="card-title">{member.name}</Link>
                 <h6 className="card-subtitle my-2 text-muted">Number of tasks: {counter}</h6>
             </div>
         </div>
